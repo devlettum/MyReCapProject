@@ -20,7 +20,14 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
+            if (car.CarName.Length > 1 && car.DailyPrice > 0)
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Araba eklenemedi.İsim en az 2 karakter olmalı veya fiyatı 0'dan fazla olmalı.");
+            }
         }
 
         public void Delete(Car car)
@@ -63,7 +70,14 @@ namespace Business.Concrete
 
         public void Update(Car car)
         {
-            _carDal.Update(car);
+            if (car.CarName.Length > 1 && car.DailyPrice > 0)
+            {
+                _carDal.Update(car);
+            }
+            else
+            {
+                Console.WriteLine("Araba güncellenemedi.Güncellenen isim en az 2 karakter olmalı veya fiyatı 0'dan fazla olmalı.");
+            }
         }
     }
 }
