@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -10,7 +11,7 @@ using System.Text;
 namespace Business.Concrete
 {
     //BİR İŞ SINIFI BAŞKA BİR SINIFI NEWLEMEZ !!!!!!
-    public class CarManager : ICarService,ICarDal
+    public class CarManager : ICarService
     {
         ICarDal _carDal;
         public CarManager(ICarDal carDal) //Bana kullandığının teknolojinin referansını ver.
@@ -51,6 +52,10 @@ namespace Business.Concrete
             return _carDal.GetAll(filter);
         }
 
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
+        }
 
         public List<Car> GetCarsByBrandId(int id)
         {
