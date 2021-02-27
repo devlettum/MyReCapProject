@@ -26,10 +26,10 @@ namespace Business.Concrete
             //Business Codes
             if (car.CarName.Length < 2 && car.DailyPrice <= 0)
             {
-                return new ErrorResult(Messages.ProductNameInvalid);
+                return new ErrorResult(Messages.CarInvalid);
             }
             _carDal.Add(car);
-            return new SuccessResult(Messages.ProductAdded);
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult Delete(Car car)
@@ -60,7 +60,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(filter),Messages.CarListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(filter),Messages.CarsListed);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()

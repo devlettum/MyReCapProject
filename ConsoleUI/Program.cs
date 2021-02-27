@@ -11,24 +11,17 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            Car car1 = new Car { BrandId =7, ColorId = 2, CarName = "Seat Leon", DailyPrice = 260, Description = "Şuan kiralık!", ModelYear = 2017 };
-            //carManager.Add(car1);
-            var result = carManager.GetCarDetails();
-            //CategoryTest(carManager);
-            if (result.Success)
-            {
-                foreach (var c in result.Data)
-                {
-                    Console.WriteLine("{0} - {1} - {2} - {3}", c.CarName, c.BrandName, c.ColorName, c.DailyPrice);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-           
             
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer { CompanyName = "ABC Company"});
+            customerManager.Add(new Customer { CompanyName = "XYZ Company"});
+            customerManager.Add(new Customer { CompanyName = "QWE Company"});
+
+            foreach (var customer in customerManager.GetAll().Data)
+            {
+                Console.WriteLine("Şirket Adı : {0}",customer.CompanyName);
+            }
+
         }
 
         private static void CategoryTest(CarManager carManager)
