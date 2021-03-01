@@ -81,14 +81,8 @@ namespace Business.Concrete
 
         IDataResult<List<Car>> ICarService.GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
-
-        //public List<Car> GetById(int Id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
 
     }
 }
