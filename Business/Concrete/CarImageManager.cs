@@ -18,18 +18,23 @@ namespace Business.Concrete
     public class CarImageManager : ICarImageService
     {
         ICarImageDal _carImageDal;
+        public CarImageManager(ICarImageDal carImageDal)
+        {
+            _carImageDal = carImageDal;
+        }
 
         public IResult Add(CarImage carImage, IFormFile file)
         {
+            CarImage newCarImage = CreatedFile(file, carImage);
             IResult result = BusinessRules.Run
                 (
                 CheckIfCarImageLimitExceeded(carImage.CarId));
 
-            if (result!=null)
+            if (result != null)
             {
                 return result;
             }
-            CarImage newCarImage = CreatedFile(file, carImage);
+
             _carImageDal.Add(newCarImage);
 
             return new SuccessResult();

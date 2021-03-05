@@ -50,11 +50,6 @@ namespace Business.Concrete
             return _carDal.Get(filter);
         }
 
-        public List<Car> GetAll()
-        {
-            //iş kodları        
-            throw new NotImplementedException();
-        }
 
         public IDataResult<List<Car>> GetAll(Expression<Func<Car, bool>> filter = null)
         {
