@@ -20,7 +20,7 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-        public CarManager(ICarDal carDal) 
+        public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
         }
@@ -37,19 +37,17 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessResult();
         }
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
-            if (car.CarName.Length > 1 && car.DailyPrice > 0)
-            {
-                _carDal.Update(car);
-                return new SuccessResult();
-            }
-            return new ErrorResult();
+
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
 
         }
         public Car Get(Expression<Func<Car, bool>> filter)
         {
-           return _carDal.Get(filter);
+            return _carDal.Get(filter);
         }
 
         public List<Car> GetAll()
@@ -60,7 +58,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(filter),Messages.CarsListed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(filter), Messages.CarsListed);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
@@ -70,7 +68,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p=>p.BrandId==id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.BrandId == id));
         }
 
 

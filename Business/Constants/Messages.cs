@@ -37,5 +37,8 @@ namespace Business.Constants
 
         public static string RentalInvalid = "Kiralama geçersiz";
         public static string CarInvalid = "Araba ekleme geçersiz";
+
+        public static string CarImageLimitExceeded="Araba resmi limit aşıldı";
+        public static string CarImageIsNotExists="Araba resmi bulunmuyor";
     }
 }

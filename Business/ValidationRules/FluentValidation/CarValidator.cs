@@ -17,7 +17,8 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.DailyPrice).GreaterThan(0);
             RuleFor(c => c.DailyPrice).GreaterThan(200).When(c => c.BrandId == 6);//Tesla için
             RuleFor(c => c.CarName).Must(StartWithT).When(c => c.BrandId == 6).WithMessage("Bu model için adı T ile başlamalı");
-
+            RuleFor(b => b.BrandId).NotEmpty();
+            RuleFor(c => c.ColorId).NotEmpty();
         }
 
         private bool StartWithT(string arg)
