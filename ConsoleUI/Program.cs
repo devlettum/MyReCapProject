@@ -15,13 +15,13 @@ namespace ConsoleUI
             
         }
 
-        private static void CategoryTest(CarManager carManager)
-        {
-            //Tüm ürün açıklamalarını listeleme
-            foreach (var car in carManager.GetAll())
-            {
-                Console.WriteLine(car.Description);
-            }
-        }
+        //private static void CategoryTest(CarManager carManager)
+        //{
+        //    //Tüm ürün açıklamalarını listeleme
+        //    foreach (var car in carManager.GetAll())
+        //    {
+        //        Console.WriteLine(car.Description);
+        //    }
+        //}
     }
 }
