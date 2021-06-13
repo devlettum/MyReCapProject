@@ -7,7 +7,6 @@ using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Entities.DTOs;
 using FluentValidation;
@@ -89,6 +88,16 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetCarsByColorid(int Colorid)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(p => p.ColorId == Colorid));
+        }
+        //
+        public IDataResult<List<CarDetailDto>> GetCarDetailById(int CarId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.CarId == CarId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetFilterCar(int BrandId, int ColorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == ColorId && c.BrandId == BrandId));
         }
     }
 }
